@@ -104,6 +104,22 @@ function confirmEmail(string $token): array {
     return ['ok' => true];
 }
 
+function resendConfirmEmail(int $userId): array {
+    $pdo = getDb();
+    $st = $pdo->prepare("SELECT email, name, email_verified_at FROM users WHERE id = ?");
+    $st->execute([$userId]);
+    $u = $st->fetch(PDO::FETCH_ASSOC);
+    if (!$u || $u['email_verified_at']) {
+        return ['ok' => false, 'message' => 'Email already verified'];
+    }
+    $token = bin2hex(random_bytes(32));
+    $expires = date('Y-m-d H:i:s', time() + EMAIL_CONFIRM_EXPIRY);
+    $pdo->prepare("DELETE FROM tokens WHERE user_id = ? AND type = 'email_confirm'")->execute([$userId]);
+    $pdo->prepare("INSERT INTO tokens (user_id, type, token, expires_at) VALUES (?, 'email_confirm', ?, ?)")
+        ->execute([$userId, $token, $expires]);
+    return ['ok' => true, 'email' => $u['email'], 'name' => $u['name'], 'confirm_token' => $token];
+}
+
 function requestPasswordReset(string $email): array {
     $email = trim(strtolower($email));
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

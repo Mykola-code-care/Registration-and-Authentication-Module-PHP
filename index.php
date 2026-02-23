@@ -13,12 +13,38 @@ if ($user):
         <h1>Welcome, <?= htmlspecialchars($user['name']) ?>!</h1>
         <p>You are logged in.</p>
         <?php if (!$user['email_verified_at']): ?>
-            <p class="notice">Please check your email and confirm your address. <a href="profile.php">Profile</a></p>
+            <p class="notice">Please check your email and confirm your address.</p>
+            <div class="actions">
+                <a href="profile.php" class="btn btn-primary">Profile</a>
+                <form method="post" action="resend-confirm.php" class="btn-inline">
+                    <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken()) ?>">
+                    <button type="submit" class="btn btn-secondary">Resend</button>
+                </form>
+            </div>
         <?php else: ?>
             <p>Email confirmed. <a href="profile.php">Go to profile</a></p>
         <?php endif; ?>
     </div>
 </div>
+<?php
+if ($user && !$user['email_verified_at']):
+?>
+<div id="confirm-email-modal" class="modal" role="dialog" aria-labelledby="confirm-email-title" aria-hidden="false">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <h2 id="confirm-email-title">Confirm your email</h2>
+        <p class="modal-body">Please check your email and confirm your address.</p>
+        <div class="modal-actions">
+            <a href="profile.php" class="btn btn-primary">Profile</a>
+            <form method="post" action="resend-confirm.php" class="btn-inline">
+                <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken()) ?>">
+                <button type="submit" class="btn btn-secondary">Resend</button>
+            </form>
+        </div>
+        <button type="button" class="btn btn-secondary modal-close" style="margin-top: 1rem;">Close</button>
+    </div>
+</div>
+<?php endif; ?>
 <?php
 else:
 ?>

@@ -53,4 +53,16 @@
         if (modalClose) modalClose.addEventListener('click', closeModal);
         if (backdrop) backdrop.addEventListener('click', closeModal);
     }
+
+    // Confirm email modal (close button and backdrop)
+    var confirmModal = document.getElementById('confirm-email-modal');
+    if (confirmModal) {
+        var confirmClose = confirmModal.querySelector('.modal-close');
+        var confirmBackdrop = confirmModal.querySelector('.modal-backdrop');
+        function closeConfirmModal() {
+            confirmModal.setAttribute('aria-hidden', 'true');
+        }
+        if (confirmClose) confirmClose.addEventListener('click', closeConfirmModal);
+        if (confirmBackdrop) confirmBackdrop.addEventListener('click', closeConfirmModal);
+    }
 })();

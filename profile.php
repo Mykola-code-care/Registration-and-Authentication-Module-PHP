@@ -56,6 +56,15 @@ ob_start();
                     <span class="badge badge-warning">Not verified</span>
                 <?php endif; ?>
             </p>
+            <?php if (!$user['email_verified_at']): ?>
+            <div class="profile-resend">
+                <form method="post" action="resend-confirm.php" class="btn-inline">
+                    <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken()) ?>">
+                    <input type="hidden" name="redirect" value="profile.php">
+                    <button type="submit" class="btn btn-secondary btn-small">Resend</button>
+                </form>
+            </div>
+            <?php endif; ?>
             <p><strong>Registered:</strong> <?= date('d.m.Y', strtotime($user['created_at'])) ?></p>
         </div>
 
