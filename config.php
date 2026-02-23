@@ -21,8 +21,8 @@ define('SESSION_LIFETIME', 3600 * 24 * 7); // 7 days
 // Email (SMTP) — values from config.local.php or env take precedence
 if (!defined('MAIL_HOST')) define('MAIL_HOST', getenv('MAIL_HOST') ?: 'smtp.mailtrap.io');
 if (!defined('MAIL_PORT')) define('MAIL_PORT', (int)(getenv('MAIL_PORT') ?: 2525));
-if (!defined('MAIL_USER')) define('MAIL_USER', getenv('MAIL_USER') ?: '');
-if (!defined('MAIL_PASS')) define('MAIL_PASS', getenv('MAIL_PASS') ?: '');
+if (!defined('MAIL_USER')) define('MAIL_USER', getenv('MAIL_USER') ?: '15b0ddb8081e86');
+if (!defined('MAIL_PASS')) define('MAIL_PASS', getenv('MAIL_PASS') ?: 'bcbf06b5e593f1');
 if (!defined('MAIL_FROM_EMAIL')) define('MAIL_FROM_EMAIL', getenv('MAIL_FROM') ?: 'noreply@example.com');
 if (!defined('MAIL_FROM_NAME')) define('MAIL_FROM_NAME', APP_NAME);
 

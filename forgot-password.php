@@ -8,6 +8,7 @@ requireGuest();
 
 $errors = [];
 $done = false;
+$emailFound = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $csrf = $_POST['csrf'] ?? '';
@@ -18,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = requestPasswordReset($email);
         if (!empty($result['token']) && !empty($result['email'])) {
             sendPasswordResetEmail($result['email'], $result['name'] ?? '', $result['token']);
+            $emailFound = true;
         }
         $done = true;
     }
@@ -29,7 +31,11 @@ ob_start();
     <div class="card form-card">
         <h1>Reset password</h1>
         <?php if ($done): ?>
-            <p class="success-msg">If an account exists with this email, you will receive a link to reset your password. Please check your inbox.</p>
+            <?php if ($emailFound): ?>
+                <p class="success-msg">If an account exists with this email, you will receive a link to reset your password. Please check your inbox.</p>
+            <?php else: ?>
+                <p class="form-error">No account found with this email address.</p>
+            <?php endif; ?>
             <p><a href="login.php" class="btn btn-secondary">Back to log in</a></p>
         <?php else: ?>
             <?php if (!empty($errors['form'])): ?>
