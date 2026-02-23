@@ -1,0 +1,20 @@
+# Dependencies
+/vendor/
+
+# Environment and secrets
+.env
+.env.*
+config.local.php
+
+# SQLite DB (optional: remove if you want to commit a fresh DB)
+/data/*.db
+
+# OS and IDE
+.DS_Store
+.idea/
+*.swp
+*.swo
+Thumbs.db
+
+# Composer
+composer.lock

@@ -1,0 +1,14 @@
+{
+    "name": "app/auth-demo",
+    "description": "Registration and Authentication Module",
+    "require": {
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^7.0"
+    },
+    "suggest": {
+        "phpmailer/phpmailer": "For sending email via SMTP (e.g. Mailtrap, Brevo)"
+    },
+    "autoload": {
+        "files": []
+    }
+}

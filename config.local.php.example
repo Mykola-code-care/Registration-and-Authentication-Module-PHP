@@ -1,0 +1,16 @@
+<?php
+/**
+ * Local mail settings (do not commit to git).
+ * Copy this file to config.local.php and fill in your credentials.
+ *
+ * Mailtrap.io (free for testing):
+ * 1. Sign up at https://mailtrap.io
+ * 2. Inbox → SMTP Settings — copy Host, Port, Username, Password
+ * 3. Run: composer require phpmailer/phpmailer
+ */
+
+define('MAIL_HOST', 'smtp.mailtrap.io');
+define('MAIL_PORT', 2525);
+define('MAIL_USER', 'your_mailtrap_username');
+define('MAIL_PASS', 'your_mailtrap_password');
+define('MAIL_FROM_EMAIL', 'noreply@example.com');
