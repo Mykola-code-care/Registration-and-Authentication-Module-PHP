@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ob_start();
 ?>
-<div class="container">
+<div class="container container--wide">
     <div class="card form-card">
         <h1>Profile</h1>
         <?php if ($success): ?>

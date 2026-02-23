@@ -79,6 +79,10 @@ nav a:hover {
     padding: 0 1rem;
 }
 
+.container--wide {
+    max-width: 560px;
+}
+
 .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -159,11 +163,22 @@ nav a:hover {
 }
 
 .checkbox-field .checkbox-label {
-    display: flex;
     align-items: flex-start;
     gap: 0.5rem;
     font-weight: 400;
     cursor: pointer;
+    color: var(--text);
+}
+
+.checkbox-field .checkbox-label .link {
+    white-space: nowrap;
+    color: #a78bfa;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.checkbox-field .checkbox-label .link:hover {
+    color: #c4b5fd;
 }
 
 .checkbox-field input[type="checkbox"] {
